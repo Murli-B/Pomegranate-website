@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+}
+
+/* Glassmorphism Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.nav-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #a0a0a0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
+}
+
+.nav-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ff416c;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-btn:hover::after,
+.nav-btn.active::after {
+    width: 100%;
+}
+
+.nav-btn.active {
+    color: #ffffff;
+}
+
+/* Background Animation */
+.scroll-container {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+/* Content Sections */
+.content {
+    position: relative;
+    z-index: 2;
+    height: 800vh; /* Increased scroll length for 4 sections */
+}
+
+.text-section {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    pointer-events: none; /* Allows scrolling over the text easily */
+}
+
+/* Enable pointer events on cards so they can be hovered */
+.card-container, .steps-list {
+    pointer-events: auto;
+}
+
+.text-section h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    text-shadow: 0px 4px 30px rgba(255, 65, 108, 0.4);
+    letter-spacing: -1px;
+}
+
+.text-section p {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 300;
+    color: #f0f0f0;
+    margin-top: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    max-width: 800px;
+    line-height: 1.4;
+}
+
+/* Position each section along the scroll space */
+#home {
+    top: 50vh;
+    transform: translateY(-50%);
+}
+
+#benefits {
+    top: 250vh;
+    transform: translateY(-50%);
+}
+
+#recipes {
+    top: 450vh;
+    transform: translateY(-50%);
+}
+
+#how-to-eat {
+    top: 650vh;
+    transform: translateY(-50%);
+}
+
+/* Glass Cards Layout */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    max-width: 1200px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 65, 108, 0.5);
+}
+
+.glass-card h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.8rem;
+    color: #ff4b2b;
+}
+
+.glass-card p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #d0d0d0;
+    text-shadow: none;
+}
+
+/* Steps List */
+.steps-list {
+    text-align: left;
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: #e0e0e0;
+    max-width: 700px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 40px 40px 40px 60px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.steps-list li {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.steps-list li:last-child {
+    margin-bottom: 0;
+}
+
+.steps-list strong {
+    color: #ff416c;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-btn {
+        font-size: 0.8rem;
+    }
+}
